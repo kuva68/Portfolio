@@ -1,13 +1,14 @@
 import React, { useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { CardItem } from "./CardIatem";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useAppStore } from "@/store/appStore";
 import BottomBtnBlock from "./BottomBtnBlock";
 import { scaledSize, scaledY } from "@/utils/scaleSize";
-import { cardWidth } from "@/constants";
 import { useAnimation } from "@/hooks/useAnimation";
+import { ExtendedTheme } from "@/types/types";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export const MyCardDeck = () => {
   const apps = useAppStore((state) => state.appsExamples);
@@ -30,7 +31,8 @@ export const MyCardDeck = () => {
   } = useAnimation({
     maxIndex: apps.length - 1,
   });
-  const styles = useMemo(() => createStyles(), []);
+  const theme = useThemeColor();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const containerStyle = useAnimatedStyle(() => {
     return {
       zIndex: animatedIndex.value !== null ? 2000 : 1,
@@ -70,13 +72,19 @@ export const MyCardDeck = () => {
   );
 };
 
-const createStyles = () =>
+const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: "flex-end",
       alignItems: "center",
-      paddingBottom: scaledY(20),
+      paddingBottom:
+        Platform.OS === "web" &&
+        theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH
+          ? scaledY(40)
+          : Platform.OS === "web"
+          ? scaledY(80)
+          : scaledY(20),
       zIndex: 1000,
     },
 
@@ -111,7 +119,7 @@ const createStyles = () =>
       bottom: 0,
       alignSelf: "center",
       position: "absolute",
-      width: cardWidth,
+      width: theme.sizes.cardWidth,
       height: scaledSize(461),
       backgroundColor: "#ffffff",
       borderRadius: 20,

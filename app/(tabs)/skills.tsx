@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { isIOS } from "../../utils";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../constants";
-import { scaledSize, scaledY } from "../../utils/scaleSize";
+import { scaledY } from "../../utils/scaleSize";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
 import { PhoneTemplate } from "@/components/PhoneTemplate";
@@ -16,7 +15,8 @@ export const SkillsScreen = () => {
 
   return (
     <GradientLayout>
-      {Platform.OS === "web" && SCREEN_HEIGHT < SCREEN_WIDTH ? (
+      {Platform.OS === "web" &&
+      theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH ? (
         <PhoneTemplate>
           <View style={styles.image}>
             <Title title="Skills" />
@@ -44,12 +44,7 @@ const createStyles = (theme: ExtendedTheme) =>
       marginTop: scaledY(54),
       gap: scaledY(20),
 
-      width:
-        Platform.OS !== "web"
-          ? scaledSize(375)
-          : SCREEN_HEIGHT > SCREEN_WIDTH
-          ? SCREEN_HEIGHT
-          : 375,
+      width: theme.sizes.cardWidth,
     },
 
     padding: { paddingHorizontal: 20, marginTop: isIOS ? 50 : 20 },

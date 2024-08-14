@@ -7,9 +7,14 @@ export const cardWidth =
   Platform.OS !== "web"
     ? scaledSize(373)
     : SCREEN_WIDTH > SCREEN_HEIGHT
-    ? 600
+    ? 333
     : SCREEN_WIDTH * 0.98;
-export const cardHeight = scaledY(560);
+export const cardHeight =
+  Platform.OS == "web" && SCREEN_WIDTH > SCREEN_HEIGHT
+    ? SCREEN_HEIGHT * 0.64
+    : Platform.OS == "web"
+    ? SCREEN_HEIGHT * 0.7
+    : scaledY(560);
 export const CARD_LENGTH =
   Platform.OS !== "web"
     ? SCREEN_WIDTH * 0.8
@@ -80,7 +85,7 @@ export const skills = [
     title: "WEB3",
     icon: EnSkillsIkon.WEB3,
     text: [
-      "WWB3Auth: wallet creation in seconds - all while keeping it secure, non-custodial , and seed phrase-free via Multi-Party Computation (MPC) and Account Abstractionstems.",
+      "WWB3Auth: wallet creation in seconds - all while keeping it secure, non-custodial , and seed phrase-free via Multi-Party Computation (MPC) and Account Abstractions.",
       "Ethers.js library aims to be a complete and compact library for interacting with the Ethereum Blockchain and its ecosystem",
       "@solana/web3.js to interact with accounts and programs on the Solana network through the Solana JSON RPC API.",
     ],

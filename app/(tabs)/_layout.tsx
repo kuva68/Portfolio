@@ -1,7 +1,5 @@
 import { Tabs } from "expo-router";
 import React from "react";
-
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { useTheme } from "@react-navigation/native";
 import BottomTabIcon from "@/components/BottomTabIcon";
 import { EnScreens } from "@/types/enums";
@@ -11,39 +9,16 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      initialRouteName="home"
       screenOptions={{
         tabBarActiveTintColor: theme.colors.primary,
         headerShown: false,
       }}
     >
-      {/* <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: "Explore",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
-          ),
-        }}
-      /> */}
       <Tabs.Screen
         name="home"
         options={{
-          title: "Home",
+          title: "Apps",
           tabBarIcon: ({ color, focused }) => (
             <BottomTabIcon isFocused={focused} route={EnScreens.MAIN} />
           ),
@@ -55,6 +30,15 @@ export default function TabLayout() {
           title: "Skills",
           tabBarIcon: ({ color, focused }) => (
             <BottomTabIcon isFocused={focused} route={EnScreens.SKILLS} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "About",
+          tabBarIcon: ({ color, focused }) => (
+            <BottomTabIcon isFocused={focused} route={EnScreens.ABOUT} />
           ),
         }}
       />

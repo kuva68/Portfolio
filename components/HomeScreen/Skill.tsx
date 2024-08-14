@@ -9,7 +9,7 @@ const SkillView = ({ skill }: { skill: string }) => {
   const styles = useMemo(() => createStyles(), []);
   return (
     <LinearGradient colors={["#818181", "#81818180"]} style={[styles.card]}>
-      <Text preset="accentLight" style={styles.title}>
+      <Text numberOfLines={2} preset="accentLight" style={styles.title}>
         {skill}
       </Text>
     </LinearGradient>
@@ -19,10 +19,17 @@ export default SkillView;
 const createStyles = () =>
   StyleSheet.create({
     card: {
-      paddingVertical: scaledY(6),
+      paddingTop: scaledY(1),
       paddingHorizontal: scaledSize(8),
       borderRadius: scaledSize(18),
+      paddingBottom: scaledY(2),
+      overflow: "hidden",
     },
 
-    title: { color: defaultColors.white },
+    title: {
+      color: defaultColors.white,
+      maxWidth: 270,
+      fontSize: scaledSize(10),
+      textAlign: "center",
+    },
   });

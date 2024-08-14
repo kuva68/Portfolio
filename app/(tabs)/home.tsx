@@ -1,25 +1,32 @@
 import React, { useMemo } from "react";
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scaledSize, scaledY } from "../../utils/scaleSize";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
-import { Text } from "@/components/Text";
 import { MyCardDeck } from "@/components/HomeScreen/MyCardDeck";
+import { PhoneTemplate } from "@/components/PhoneTemplate";
+import Title from "@/components/Title";
 
 const MainScreen = () => {
   const theme = useThemeColor();
   const styles = useMemo(() => createStyles(theme), [theme]);
   return (
     <SafeAreaView style={styles.kbContainer}>
-      <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
-      <View style={styles.top}>
-        <Text style={styles.text} preset="title">
-          Developed Apps
-        </Text>
-      </View>
-
-      <MyCardDeck />
+      {Platform.OS === "web" &&
+      theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH ? (
+        <PhoneTemplate>
+          <View style={styles.image}>
+            <Title color={theme.colors.primary} title="Developed Apps" />
+            <MyCardDeck />
+          </View>
+        </PhoneTemplate>
+      ) : (
+        <View style={styles.carouselContainer}>
+          <Title color={theme.colors.primary} title="Developed Apps" />
+          <MyCardDeck />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -32,7 +39,24 @@ const createStyles = (theme: ExtendedTheme) =>
       flex: 1,
       alignItems: "center",
     },
-
+    image: {
+      width: "100%",
+      overflow: "hidden",
+      gap: scaledY(20),
+      height: "100%",
+    },
+    carouselContainer: {
+      overflow: "hidden",
+      marginTop: scaledY(54),
+      gap: scaledY(20),
+      height: "100%",
+      width:
+        Platform.OS !== "web"
+          ? scaledSize(375)
+          : theme.sizes.SCREEN_HEIGHT > theme.sizes.SCREEN_WIDTH
+          ? theme.sizes.SCREEN_HEIGHT
+          : 375,
+    },
     text: {
       color: theme.colors.primary,
       alignSelf: Platform.OS === "web" ? "center" : "flex-start",

@@ -1,4 +1,3 @@
-import { cardWidth } from "@/constants";
 import { Images } from "@/constants/images";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
@@ -255,7 +254,7 @@ const createStyles = (theme: ExtendedTheme) =>
       bottom: 0,
       alignSelf: "center",
       position: "absolute",
-      width: cardWidth,
+      width: theme.sizes.cardWidth,
       height: scaledSize(461),
       backgroundColor: theme.colors.background,
       borderRadius: 20,
@@ -329,7 +328,13 @@ const createStyles = (theme: ExtendedTheme) =>
     },
     bottom: {
       position: "absolute",
-      bottom: Platform.OS === "web" ? 10 : scaledSize(-28),
+      bottom:
+        Platform.OS === "web" &&
+        theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH
+          ? 10
+          : Platform.OS === "web"
+          ? 60
+          : scaledSize(-28),
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",

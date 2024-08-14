@@ -1,4 +1,4 @@
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import React, { useMemo } from "react";
 import Animated, {
   SharedValue,
@@ -9,14 +9,9 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { Text } from "../Text";
-import {
-  CARD_LENGTH,
-  EnSkillsIkon,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-} from "../../constants";
+import { EnSkillsIkon } from "../../constants";
 import { Images } from "../../constants/images";
-import { scaledSize, scaledY } from "../../utils/scaleSize";
+import { scaledY } from "../../utils/scaleSize";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
 
@@ -27,31 +22,26 @@ type Props = {
 };
 
 export const CarouselItem = (props: Props) => {
-  const itemWidth =
-    Platform.OS !== "web"
-      ? SCREEN_WIDTH
-      : SCREEN_WIDTH > SCREEN_HEIGHT
-      ? 355
-      : 375 * 0.8;
   const { item, index, scrollX } = props;
   const theme = useThemeColor();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const { cardWidth, SCREEN_HEIGHT, SCREEN_WIDTH } = theme.sizes;
   const inputRange = [
-    (index - 1) * itemWidth,
-    index * itemWidth,
-    (index + 1) * itemWidth,
+    (index - 1) * cardWidth,
+    index * cardWidth,
+    (index + 1) * cardWidth,
   ];
 
   const opacityInputRange = [
-    (index - 1) * itemWidth,
-    index * itemWidth,
-    (index + 1) * itemWidth,
+    (index - 1) * cardWidth,
+    index * cardWidth,
+    (index + 1) * cardWidth,
   ];
 
   const translateXOutputRange =
     Platform.OS === "web" && SCREEN_HEIGHT < SCREEN_WIDTH
-      ? [-itemWidth * 0.1, 0, itemWidth * 0.1]
-      : [-itemWidth * 0.15, 0, itemWidth * 0.15];
+      ? [-cardWidth * 0.1, 0, cardWidth * 0.1]
+      : [-cardWidth * 0.15, 0, cardWidth * 0.15];
 
   const cardStyle = useAnimatedStyle(() => {
     return {
@@ -149,15 +139,13 @@ export const CarouselItem = (props: Props) => {
   );
 };
 
-const createStyles = (theme: ExtendedTheme) =>
-  StyleSheet.create({
+const createStyles = (theme: ExtendedTheme) => {
+  const { cardWidth, SCREEN_HEIGHT, CARD_LENGTH } = theme.sizes;
+  return StyleSheet.create({
     container: {
       justifyContent: "center",
       alignItems: "center",
-      width:
-        Platform.OS === "web" && SCREEN_HEIGHT < SCREEN_WIDTH
-          ? 343
-          : scaledSize(375),
+      width: cardWidth,
     },
     card: {
       borderRadius: 32,
@@ -233,3 +221,4 @@ const createStyles = (theme: ExtendedTheme) =>
       width: "80%",
     },
   });
+};

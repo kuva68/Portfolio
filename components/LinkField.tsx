@@ -5,6 +5,7 @@ import { Images } from "../constants/images";
 import { shortAddress } from "../utils";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
+import { scaledSize } from "@/utils/scaleSize";
 
 const LinkField = ({
   link,
@@ -50,6 +51,7 @@ const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
     copiedText: {
       color: theme.colors.half,
+      maxWidth: scaledSize(230),
     },
     main: {
       width: "100%",

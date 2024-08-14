@@ -115,7 +115,7 @@ const createStyles = (theme: ExtendedTheme) =>
       paddingBottom: scaledY(20),
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: scaledSize(10),
+      gap: scaledSize(4),
       alignItems: "center",
     },
     gradient: { flex: 1, height: "100%" },

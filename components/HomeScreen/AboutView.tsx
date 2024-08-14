@@ -143,8 +143,9 @@ const createStyles = (theme: ExtendedTheme) =>
       paddingBottom: scaledY(20),
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: scaledSize(10),
+      gap: scaledY(4),
       alignItems: "center",
+      overflow: "hidden",
     },
     copiedText: {
       color: theme.colors.background,
