@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { scaledSize, scaledY } from "../../utils/scaleSize";
+import { scaledSize, scaledY } from "../utils/scaleSize";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
 import { MyCardDeck } from "@/components/HomeScreen/MyCardDeck";

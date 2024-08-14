@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Platform, StyleSheet, View } from "react-native";
-import { isIOS } from "../../utils";
-import { scaledY } from "../../utils/scaleSize";
+import { isIOS } from "../utils";
+import { scaledY } from "../utils/scaleSize";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ExtendedTheme } from "@/types/types";
 import { PhoneTemplate } from "@/components/PhoneTemplate";

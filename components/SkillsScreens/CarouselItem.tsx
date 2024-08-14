@@ -40,7 +40,7 @@ export const CarouselItem = (props: Props) => {
 
   const translateXOutputRange =
     Platform.OS === "web" && SCREEN_HEIGHT < SCREEN_WIDTH
-      ? [-cardWidth * 0.1, 0, cardWidth * 0.1]
+      ? [-cardWidth * 0.08, 0, cardWidth * 0.08]
       : [-cardWidth * 0.15, 0, cardWidth * 0.15];
 
   const cardStyle = useAnimatedStyle(() => {
