@@ -8,7 +8,6 @@ import {
   withTiming,
 } from "react-native-reanimated";
 import { Dimensions } from "react-native";
-import { useCallback } from "react";
 import { cardWidth } from "@/constants";
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
@@ -32,7 +31,8 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
   const nextIndex = useSharedValue<null | number>(null);
   const setActiveIndex = (value: number) => (activeIndex.value = value);
 
-  const swapEnd = useCallback(() => {
+  const swapEnd = () => {
+    "worklet";
     setTimeout(() => {
       setActiveIndex(activeIndex.value > 0 ? activeIndex.value - 1 : maxIndex);
       nextIndex.value = null;
@@ -56,13 +56,10 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
       });
     }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex.value, maxIndex]);
+  };
 
-  const onBuyToken = useCallback(() => {
-    // if (animatedIndex.value !== null) {
-    //    buy(animatedIndex.value, false);
-    // }
-
+  const onBuyToken = () => {
+    "worklet";
     setTimeout(() => {
       setActiveIndex(activeIndex.value > 0 ? activeIndex.value - 1 : maxIndex);
     }, 0);
@@ -83,12 +80,9 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
         });
       });
     }, 100);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex.value, animatedIndex.value, maxIndex]);
-  const onBuy50Token = useCallback(() => {
-    // if (animatedIndex.value) {
-    //   buy(animatedIndex.value, true);
-    // }
+  };
+  const onBuy50Token = () => {
+    "worklet";
     setTimeout(() => {
       setActiveIndex(activeIndex.value > 0 ? activeIndex.value - 1 : maxIndex);
     }, 0);
@@ -111,8 +105,25 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
       isSkipSmall.value = false;
       isFreezing.value = false;
     }, 800);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex.value, animatedIndex.value, maxIndex]);
+  };
+
+  const goBack = () => {
+    "worklet";
+    translateX.value = withTiming(0, {
+      duration: 300,
+    });
+    translateY.value = withTiming(0, {
+      duration: 300,
+    });
+
+    buy50Opacity.value = withTiming(0, { duration: 100 });
+    skipOpacity.value = withTiming(0, { duration: 100 });
+    buyOpacity.value = withTiming(0, { duration: 100 });
+    animatedIndex.value = null;
+    isFreezing.value = false;
+    nextIndex.value = null;
+  };
+
   const gesture = Gesture.Pan()
     .onStart((event) => {
       if (!isFreezing.value && maxIndex > 0) {
@@ -154,22 +165,6 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
       }
     })
     .onEnd((event) => {
-      const goBack = () => {
-        translateX.value = withTiming(0, {
-          duration: 300,
-        });
-        translateY.value = withTiming(0, {
-          duration: 300,
-        });
-
-        buy50Opacity.value = withTiming(0, { duration: 100 });
-        skipOpacity.value = withTiming(0, { duration: 100 });
-        buyOpacity.value = withTiming(0, { duration: 100 });
-        animatedIndex.value = null;
-        isFreezing.value = false;
-        nextIndex.value = null;
-      };
-
       if (!isFreezing.value && maxIndex > 0 && animatedIndex.value !== null) {
         const duration = Date.now() - startTime.value;
         rotate.value = withSpring(0);
@@ -190,10 +185,10 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
           });
           if (direction > 0) {
             isFreezing.value = true;
-            runOnJS(onBuyToken)();
+            onBuyToken();
           } else {
             isFreezing.value = true;
-            runOnJS(swapEnd)();
+            swapEnd();
           }
         } else if (translateY.value < -140 && Math.abs(translateX.value) < 50) {
           isFreezing.value = true;
@@ -203,7 +198,7 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
             stiffness: 100,
           });
 
-          runOnJS(onBuy50Token)();
+          onBuy50Token();
         } else {
           goBack();
         }
@@ -213,6 +208,7 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
     });
 
   const onBuyPress = () => {
+    "worklet";
     if (isFreezing.value || !maxIndex) {
       return;
     }
@@ -232,6 +228,7 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
     }, 700);
   };
   const onBuy50Press = () => {
+    "worklet";
     if (isFreezing.value || !maxIndex) {
       return;
     }
@@ -259,6 +256,7 @@ export const useAnimation = ({ maxIndex }: { maxIndex: number }) => {
     });
   };
   const skip = () => {
+    "worklet";
     if (isFreezing.value || !maxIndex) {
       return;
     }

@@ -7,26 +7,29 @@ import { ExtendedTheme } from "@/types/types";
 import { MyCardDeck } from "@/components/HomeScreen/MyCardDeck";
 import { PhoneTemplate } from "@/components/PhoneTemplate";
 import Title from "@/components/Title";
+import GradientLayout from "@/components/GradientLayout";
 
 const MainScreen = () => {
   const theme = useThemeColor();
   const styles = useMemo(() => createStyles(theme), [theme]);
   return (
     <SafeAreaView style={styles.kbContainer}>
-      {Platform.OS === "web" &&
-      theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH ? (
-        <PhoneTemplate>
-          <View style={styles.image}>
+      <GradientLayout>
+        {Platform.OS === "web" &&
+        theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH ? (
+          <PhoneTemplate>
+            <View style={styles.image}>
+              <Title color={theme.colors.primary} title="Developed Apps" />
+              <MyCardDeck />
+            </View>
+          </PhoneTemplate>
+        ) : (
+          <View style={styles.carouselContainer}>
             <Title color={theme.colors.primary} title="Developed Apps" />
             <MyCardDeck />
           </View>
-        </PhoneTemplate>
-      ) : (
-        <View style={styles.carouselContainer}>
-          <Title color={theme.colors.primary} title="Developed Apps" />
-          <MyCardDeck />
-        </View>
-      )}
+        )}
+      </GradientLayout>
     </SafeAreaView>
   );
 };
@@ -37,7 +40,7 @@ const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
     kbContainer: {
       flex: 1,
-      alignItems: "center",
+      backgroundColor: theme.colors.white,
     },
     image: {
       width: "100%",

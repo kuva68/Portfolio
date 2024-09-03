@@ -17,5 +17,5 @@ export const GradientLayout = ({ children }: PropsWithChildren) => {
 export default GradientLayout;
 const createStyles = () =>
   StyleSheet.create({
-    main: { flex: 1, alignItems: "center" },
+    main: { flex: 1, alignItems: "center", width: "100%" },
   });
