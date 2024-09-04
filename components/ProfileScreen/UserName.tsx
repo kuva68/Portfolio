@@ -47,9 +47,7 @@ const UserName = ({ style }: { style: ViewStyle }) => {
       >
         Hire me
       </AppButton>
-      {/* <Text preset="secondary" style={styles.addressWallet}>
-        Contacts:
-      </Text> */}
+
       <View style={styles.bottom}>
         {copied && (
           <Animated.View
@@ -97,13 +95,15 @@ export default UserName;
 
 const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
-    container: {
-      width: "100%",
-      borderRadius: 30,
-      height: scaledSize(50),
-      justifyContent: "center",
-      paddingHorizontal: scaledSize(20),
-      backgroundColor: "white",
+    main: { width: "100%", gap: scaledY(8) },
+    addressWallet: { color: "#00000090" },
+    button: {
+      alignSelf: "center",
+      marginVertical: scaledY(20),
+      width: Platform.OS === "web" ? 260 : scaledSize(335),
+    },
+    btnTextStyle: {
+      color: "white",
     },
     row: {
       flexDirection: "row",
@@ -111,9 +111,6 @@ const createStyles = (theme: ExtendedTheme) =>
       alignItems: "center",
       justifyContent: "center",
       marginTop: scaledY(10),
-    },
-    copiedText: {
-      color: theme.colors.background,
     },
     copiedTextView: {
       position: "absolute",
@@ -135,27 +132,8 @@ const createStyles = (theme: ExtendedTheme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    button: {
-      alignSelf: "center",
-      marginVertical: scaledY(20),
-      width: Platform.OS === "web" ? 260 : scaledSize(335),
+    copiedText: {
+      color: theme.colors.background,
     },
-    text: { color: "#00000090" },
-    btnTextStyle: {
-      color: "white",
-    },
-    main: { width: "100%", gap: scaledY(8) },
-    addressWallet: { color: "#00000090" },
-
-    gradient: {
-      height: scaledSize(50),
-      width: scaledSize(109),
-      borderRadius: 30,
-      flexDirection: "row",
-      gap: 10,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    touch: { position: "absolute", right: 0, top: 0 },
     bottom: { gap: scaledY(10) },
   });

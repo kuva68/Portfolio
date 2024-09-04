@@ -7,7 +7,7 @@ export const cardWidth =
   Platform.OS !== "web"
     ? scaledSize(373)
     : SCREEN_WIDTH > SCREEN_HEIGHT
-    ? 333
+    ? 395 - 54
     : SCREEN_WIDTH * 0.98;
 export const cardHeight =
   Platform.OS == "web" && SCREEN_WIDTH > SCREEN_HEIGHT

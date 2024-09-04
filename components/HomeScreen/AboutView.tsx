@@ -150,77 +150,11 @@ const createStyles = (theme: ExtendedTheme) =>
     copiedText: {
       color: theme.colors.background,
     },
-    zIndex: {
-      zIndex: 100,
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: scaledY(100),
-    },
-
-    row: {
-      flexDirection: "row",
-      alignItems: "center",
-      width: "100%",
-      justifyContent: "space-between",
-    },
-    transform: {
-      transform: [{ rotate: "180deg" }],
-      fontSize: scaledSize(30),
-      lineHeight: scaledSize(50),
-    },
-    timeText: {
-      fontSize: 10,
-    },
-    token: { flexDirection: "row", alignItems: "center", gap: 8 },
-    tokenText: {
-      width: scaledSize(259),
-    },
-    article: {
-      width: scaledSize(295),
-    },
-    valueText: {
-      fontSize: 14,
-    },
-    description: {
-      fontSize: 12,
-    },
-    btnRow: {
-      flex: 0,
-      flexDirection: "row",
-      justifyContent: "space-between",
-
-      height: scaledSize(20),
-    },
-    copiedTextWrapper: {
-      position: "absolute",
-      top: 25,
-      right: 10,
-      padding: 5,
-      width: 70,
-      height: 25,
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: 20,
-      backgroundColor: theme.colors.primary,
-    },
-
-    chartContent: { top: 20, bottom: 20, right: scaledSize(10) },
-
     title: { color: theme.colors.primary },
     flatlistContainer: {
       width: "100%",
       gap: scaledY(20),
       paddingTop: scaledY(24),
       overflow: "hidden",
-    },
-    flatlist: {
-      width: scaledSize(166),
-      padding: 0,
-      margin: 0,
-      flexDirection: "row",
-      alignItems: "center",
-      zIndex: 3000,
     },
   });

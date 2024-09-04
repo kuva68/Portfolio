@@ -87,74 +87,6 @@ const createStyles = (theme: ExtendedTheme) =>
           : scaledY(20),
       zIndex: 1000,
     },
-
-    left: {
-      width: scaledSize(25),
-      height: scaledSize(5),
-      borderRadius: 3,
-      transform: [
-        { rotate: "45deg" },
-        { translateY: scaledSize(2.6) },
-        { translateX: 2.6 },
-      ],
-    },
-    right: {
-      width: scaledSize(25),
-      height: scaledSize(5),
-      borderRadius: 3,
-      transform: [
-        { rotate: "-45deg" },
-        { translateY: scaledSize(-1) },
-        { translateX: 1 },
-      ],
-    },
-    buy50: {
-      position: "absolute",
-      height: scaledY(850),
-      width: scaledSize(375),
-      zIndex: 100000,
-      bottom: scaledY(-130),
-    },
-    card: {
-      bottom: 0,
-      alignSelf: "center",
-      position: "absolute",
-      width: theme.sizes.cardWidth,
-      height: scaledSize(461),
-      backgroundColor: "#ffffff",
-      borderRadius: 20,
-      overflow: "hidden",
-      zIndex: 15,
-    },
-    skip: {
-      width: scaledSize(336),
-      height: scaledSize(461),
-      position: "absolute",
-      right: 0,
-      top: 0,
-    },
-    like: {
-      width: scaledSize(544),
-      height: scaledSize(544),
-      position: "absolute",
-      right: 0,
-      top: 0,
-    },
-    circle: {
-      justifyContent: "center",
-      alignItems: "center",
-      width: scaledSize(60),
-      height: scaledSize(60),
-      borderRadius: scaledSize(50),
-    },
-    circleStar: {
-      width: scaledSize(48),
-      height: scaledSize(48),
-    },
-    circlePosition: {
-      position: "absolute",
-      borderRadius: 50,
-    },
     animCircle: {
       width: scaledSize(60),
       height: scaledSize(60),
@@ -169,17 +101,8 @@ const createStyles = (theme: ExtendedTheme) =>
       position: "relative",
       zIndex: 10000,
     },
-
-    text: {
-      fontSize: scaledSize(30),
-      lineHeight: scaledSize(50),
-    },
-
-    dot: {
-      width: 40,
-      height: 4,
-      borderRadius: 5,
-      marginHorizontal: 0,
-      backgroundColor: "rgba(255, 255, 255, 0.92)",
+    circleStar: {
+      width: scaledSize(48),
+      height: scaledSize(48),
     },
   });

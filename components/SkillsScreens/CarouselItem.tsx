@@ -26,6 +26,7 @@ export const CarouselItem = (props: Props) => {
   const theme = useThemeColor();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const { cardWidth, SCREEN_HEIGHT, SCREEN_WIDTH } = theme.sizes;
+
   const inputRange = [
     (index - 1) * cardWidth,
     index * cardWidth,
@@ -158,7 +159,6 @@ const createStyles = (theme: ExtendedTheme) => {
       paddingBottom: scaledY(24),
       paddingTop: 10,
     },
-    view: { width: "100%", gap: scaledY(20) },
     cardInnerContainer: {
       width: "100%",
       paddingVertical: 24,
@@ -166,59 +166,10 @@ const createStyles = (theme: ExtendedTheme) => {
     },
     imageView: { width: "100%", alignItems: "center" },
     titleContainer: { alignItems: "center", gap: scaledY(20) },
-    icon: {
-      height: 32,
-      width: 32,
-      borderRadius: 16,
-    },
     title: {
       color: theme.colors.text,
       textAlign: "center",
     },
-    type: {
-      marginTop: 16,
-      paddingHorizontal: 14,
-      paddingVertical: 4,
-      borderRadius: 9,
-      textTransform: "lowercase",
-    },
-    description: {
-      marginTop: 24,
-      textAlign: "left",
-      color: "#868E9A",
-      fontSize: 14,
-      lineHeight: 18,
-      letterSpacing: -0.4,
-    },
-    pointsContainer: {
-      marginTop: 24,
-      borderRadius: 24,
-      width: "100%",
-      justifyContent: "center",
-      alignItems: "center",
-      paddingVertical: 32,
-    },
-    pointsImageContainer: {
-      height: 48,
-      width: 48,
-      justifyContent: "center",
-      alignItems: "center",
-      // backgroundColor: palette.white,
-      borderRadius: 24,
-    },
-    pointsImage: {
-      height: 48,
-      width: 48,
-    },
-    pointsText: {
-      marginTop: 12,
-      fontSize: 28,
-      lineHeight: 32,
-      letterSpacing: -0.4,
-    },
-    button: {
-      marginTop: 32,
-      width: "80%",
-    },
+    view: { width: "100%", gap: scaledY(20) },
   });
 };

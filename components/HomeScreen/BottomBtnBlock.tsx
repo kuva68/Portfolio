@@ -243,54 +243,20 @@ const BottomBtnBlock = ({
 export default BottomBtnBlock;
 const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
-    buy50: {
+    bottom: {
       position: "absolute",
-      height: scaledY(850),
-      width: scaledSize(375),
-      zIndex: 100000,
-      bottom: scaledY(-130),
-    },
-    card: {
-      bottom: 0,
-      alignSelf: "center",
-      position: "absolute",
-      width: theme.sizes.cardWidth,
-      height: scaledSize(461),
-      backgroundColor: theme.colors.background,
-      borderRadius: 20,
-      overflow: "hidden",
-      zIndex: 15,
-    },
-    skip: {
-      width: scaledSize(336),
-      height: scaledSize(461),
-      position: "absolute",
-      right: 0,
-      top: 0,
-    },
-    like: {
-      width: scaledSize(544),
-      height: scaledSize(544),
-      position: "absolute",
-      right: 0,
-      top: 0,
-    },
-    circle: {
-      justifyContent: "center",
+      bottom:
+        Platform.OS === "web" &&
+        theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH
+          ? 10
+          : Platform.OS === "web"
+          ? 60
+          : scaledSize(-28),
+      flexDirection: "row",
       alignItems: "center",
-      width: scaledSize(60),
-      height: scaledSize(60),
-      borderRadius: scaledSize(50),
-    },
-    circleStar: {
-      width: scaledSize(48),
-      height: scaledSize(48),
-    },
-    circlePosition: {
-      position: "absolute",
-      borderRadius: 50,
-      width: scaledSize(60),
-      height: scaledSize(60),
+      justifyContent: "space-between",
+      gap: scaledSize(13),
+      zIndex: 10000,
     },
     animCircle: {
       width: scaledSize(60),
@@ -306,13 +272,11 @@ const createStyles = (theme: ExtendedTheme) =>
       position: "relative",
       zIndex: 10000,
     },
-    circleShadow: {
-      shadowColor: "black",
-      shadowOffset: { width: 0, height: 5 },
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      elevation: 5,
-      backgroundColor: "#ffffff",
+    circlePosition: {
+      position: "absolute",
+      borderRadius: 50,
+      width: scaledSize(60),
+      height: scaledSize(60),
     },
     circleGradient: {
       width: scaledSize(60),
@@ -322,23 +286,8 @@ const createStyles = (theme: ExtendedTheme) =>
       justifyContent: "center",
       alignItems: "center",
     },
-    text: {
-      fontSize: scaledSize(30),
-      lineHeight: scaledSize(50),
-    },
-    bottom: {
-      position: "absolute",
-      bottom:
-        Platform.OS === "web" &&
-        theme.sizes.SCREEN_HEIGHT < theme.sizes.SCREEN_WIDTH
-          ? 10
-          : Platform.OS === "web"
-          ? 60
-          : scaledSize(-28),
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: scaledSize(13),
-      zIndex: 10000,
+    circleStar: {
+      width: scaledSize(48),
+      height: scaledSize(48),
     },
   });

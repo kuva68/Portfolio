@@ -54,35 +54,10 @@ const createStyles = (theme: ExtendedTheme) =>
           : 0,
     },
     mTop: { marginTop: scaledY(41), marginBottom: scaledY(24) },
-    start: { alignSelf: "flex-start" },
     flex: {
       flex: 1,
       marginTop: 31,
       width: Platform.OS === "web" ? theme.sizes.cardWidth : "100%",
       height: "100%",
-    },
-    absolute: {
-      position: "absolute",
-      top: scaledSize(83),
-      right: scaledSize(-3),
-      zIndex: 10,
-      padding: scaledSize(3),
-      backgroundColor: "white",
-      borderRadius: 30,
-    },
-
-    container: {
-      alignItems: "center",
-      borderRadius: 20,
-      marginBottom: 20,
-      position: "relative",
-      zIndex: -1,
-    },
-    name: { color: "white", fontSize: 24, marginBottom: 10 },
-    imageStyle: {
-      width: "100%",
-      height: "100%",
-      position: "relative",
-      zIndex: 10,
     },
   });

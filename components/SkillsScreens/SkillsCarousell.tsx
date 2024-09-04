@@ -33,7 +33,7 @@ export const SkillsCarousell = () => {
       showsHorizontalScrollIndicator={false}
       keyExtractor={(item) => item?.title}
       pagingEnabled={true}
-      snapToAlignment={"center"}
+      snapToAlignment="center"
       renderItem={({ item, index }) => {
         return <CarouselItem {...{ index, item, scrollX }} />;
       }}
